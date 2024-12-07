@@ -1,0 +1,233 @@
+For sequence: "ACCCTAACCCTAACCCTAACCCTAA", k: 10, and w: 5
+k-mers:
+-	ACCCTAACCCTAACCCTAACCCTAA:
+0	ACCCTAACCC
+1	 CCCTAACCCT
+2	  CCTAACCCTA
+3	   CTAACCCTAA
+4	    TAACCCTAAC
+5	     AACCCTAACC
+6	      ACCCTAACCC
+7	       CCCTAACCCT
+8	        CCTAACCCTA
+9	         CTAACCCTAA
+10	          TAACCCTAAC
+11	           AACCCTAACC
+12	            ACCCTAACCC
+13	             CCCTAACCCT
+14	              CCTAACCCTA
+15	               CTAACCCTAA
+
+Minimizer seeds:
+ACCCTAACCC, 0
+AACCCTAACC, 5
+ACCCTAACCC, 6
+AACCCTAACC, 11
+
+Hash Table:
+ACCCTAACCC, [0, 6]
+AACCCTAACC, [5, 11]
+
+########################################################################################################################
+For sequence: "CACGTTTGGTTTAGGTACCATAAAATT", k: 6, and w: 4
+k-mers:
+-	CACGTTTGGTTTAGGTACCATAAAATT:
+0	CACGTT
+1	 ACGTTT
+2	  CGTTTG
+3	   GTTTGG
+4	    TTTGGT
+5	     TTGGTT
+6	      TGGTTT
+7	       GGTTTA
+8	        GTTTAG
+9	         TTTAGG
+10	          TTAGGT
+11	           TAGGTA
+12	            AGGTAC
+13	             GGTACC
+14	              GTACCA
+15	               TACCAT
+16	                ACCATA
+17	                 CCATAA
+18	                  CATAAA
+19	                   ATAAAA
+20	                    TAAAAT
+21	                     AAAATT
+
+Minimizer seeds:
+ACGTTT, 1
+CGTTTG, 2
+GTTTGG, 3
+GGTTTA, 7
+GTTTAG, 8
+AGGTAC, 12
+ACCATA, 16
+ATAAAA, 19
+AAAATT, 21
+
+Hash Table:
+ACGTTT, [1]
+CGTTTG, [2]
+GTTTGG, [3]
+GGTTTA, [7]
+GTTTAG, [8]
+AGGTAC, [12]
+ACCATA, [16]
+ATAAAA, [19]
+AAAATT, [21]
+
+########################################################################################################################
+For sequence: "ACCCTAACCCTAACCCTAACCCTAA", k: 10, w: 2, and p: 10
+k-mers:
+-	ACCCTAACCCTAACCCTAACCCTAA:
+-	A-C-T-A-C-T-A-C-T-A-C-T-A:
+-	ACTACTACTACTA:
+0	ACTACTACTA
+2	 CTACTACTAC
+4	  TACTACTACT
+6	   ACTACTACTA
+
+Genome-on-Diet seeds:
+ACTACTACTA, 0
+CTACTACTAC, 2
+ACTACTACTA, 6
+
+Hash Table:
+ACTACTACTA, [0, 6]
+CTACTACTAC, [2]
+
+########################################################################################################################
+For sequence: "AATTGCGCGTCGTACGTTTAAAAAAGGGGCGTA", k: 5, w: 2, and p: 11000
+k-mers:
+-	AATTGCGCGTCGTACGTTTAAAAAAGGGGCGTA:
+-	AA---CG---CG---GT---AA---GG---GT-:
+-	AACGCGGTAAGGGT:
+0	AACGC
+1	 ACGCG
+5	  CGCGG
+6	   GCGGT
+10	    CGGTA
+11	     GGTAA
+15	      GTAAG
+16	       TAAGG
+20	        AAGGG
+21	         AGGGT
+
+Genome-on-Diet seeds:
+AACGC, 0
+ACGCG, 1
+CGCGG, 5
+CGGTA, 10
+GGTAA, 11
+GTAAG, 15
+AAGGG, 20
+
+Hash Table:
+AACGC, [0]
+ACGCG, [1]
+CGCGG, [5]
+CGGTA, [10]
+GGTAA, [11]
+GTAAG, [15]
+AAGGG, [20]
+
+########################################################################################################################
+For sequence: "CAACCCCAACCCCAACCCCAACCCCAACCCCAACCCTAACCCCTAACCCTAACCCTAACCCTACCCTAAC", k: 10, and w: 5
+k-mers:
+-	CAACCCCAACCCCAACCCCAACCCCAACCCCAACCCTAACCCCTAACCCTAACCCTAACCCTACCCTAAC:
+0	CAACCCCAAC
+1	 AACCCCAACC
+2	  ACCCCAACCC
+3	   CCCCAACCCC
+4	    CCCAACCCCA
+5	     CCAACCCCAA
+6	      CAACCCCAAC
+7	       AACCCCAACC
+8	        ACCCCAACCC
+9	         CCCCAACCCC
+10	          CCCAACCCCA
+11	           CCAACCCCAA
+12	            CAACCCCAAC
+13	             AACCCCAACC
+14	              ACCCCAACCC
+15	               CCCCAACCCC
+16	                CCCAACCCCA
+17	                 CCAACCCCAA
+18	                  CAACCCCAAC
+19	                   AACCCCAACC
+20	                    ACCCCAACCC
+21	                     CCCCAACCCC
+22	                      CCCAACCCCA
+23	                       CCAACCCCAA
+24	                        CAACCCCAAC
+25	                         AACCCCAACC
+26	                          ACCCCAACCC
+27	                           CCCCAACCCT
+28	                            CCCAACCCTA
+29	                             CCAACCCTAA
+30	                              CAACCCTAAC
+31	                               AACCCTAACC
+32	                                ACCCTAACCC
+33	                                 CCCTAACCCC
+34	                                  CCTAACCCCT
+35	                                   CTAACCCCTA
+36	                                    TAACCCCTAA
+37	                                     AACCCCTAAC
+38	                                      ACCCCTAACC
+39	                                       CCCCTAACCC
+40	                                        CCCTAACCCT
+41	                                         CCTAACCCTA
+42	                                          CTAACCCTAA
+43	                                           TAACCCTAAC
+44	                                            AACCCTAACC
+45	                                             ACCCTAACCC
+46	                                              CCCTAACCCT
+47	                                               CCTAACCCTA
+48	                                                CTAACCCTAA
+49	                                                 TAACCCTAAC
+50	                                                  AACCCTAACC
+51	                                                   ACCCTAACCC
+52	                                                    CCCTAACCCT
+53	                                                     CCTAACCCTA
+54	                                                      CTAACCCTAC
+55	                                                       TAACCCTACC
+56	                                                        AACCCTACCC
+57	                                                         ACCCTACCCT
+58	                                                          CCCTACCCTA
+59	                                                           CCTACCCTAA
+60	                                                            CTACCCTAAC
+
+Minimizer seeds:
+AACCCCAACC, 1
+ACCCCAACCC, 2
+AACCCCAACC, 7
+ACCCCAACCC, 8
+AACCCCAACC, 13
+ACCCCAACCC, 14
+AACCCCAACC, 19
+ACCCCAACCC, 20
+AACCCCAACC, 25
+ACCCCAACCC, 26
+AACCCTAACC, 31
+ACCCTAACCC, 32
+AACCCCTAAC, 37
+ACCCCTAACC, 38
+CCCCTAACCC, 39
+AACCCTAACC, 44
+ACCCTAACCC, 45
+AACCCTAACC, 50
+ACCCTAACCC, 51
+AACCCTACCC, 56
+
+Hash Table:
+AACCCCAACC, [1, 19, 7, 25, 13]
+ACCCCAACCC, [2, 20, 8, 26, 14]
+AACCCTAACC, [50, 44, 31]
+ACCCTAACCC, [32, 51, 45]
+AACCCCTAAC, [37]
+ACCCCTAACC, [38]
+CCCCTAACCC, [39]
+AACCCTACCC, [56]
+
+########################################################################################################################
