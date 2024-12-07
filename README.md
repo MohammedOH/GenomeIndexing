@@ -2,11 +2,9 @@
 
 ## Overview
 
-The **GenomeIndexing** A Java tool for extracting indices and seeds from genome sequences using **Minimizer** and *
-*Genome-on-Diet** algorithms. This project apply the concepts explained in
-this [lecture](https://www.youtube.com/watch?v=1WlJrmrlQtc), which is part of the `Introduction to Bioinformatics`
-course taught at the Islamic University of Gaza (IUG).
-
+The **GenomeIndexing** is a Java tool for extracting indices and seeds from genome sequences using **Minimizer** and **Genome-on-Diet** algorithms.
+This project apply the concepts explained in this [lecture](https://www.youtube.com/watch?v=1WlJrmrlQtc), which is part
+of the `Introduction to Bioinformatics` course taught at the Islamic University of Gaza (IUG).
 
 ## Input file structure
 
@@ -22,8 +20,7 @@ course taught at the Islamic University of Gaza (IUG).
     * The second line contains the genome sequence.
     * The third line contains the integers `k`, `w`, and `p` (if applicable) respectively.
 
-Example: [sample-input.txt](https://github.com/MohammedOH/GenomeIndexing/sample-input.txt)
-
+Example: [sample-input.txt](sample-input.txt)
 
 ## Prerequisites
 
@@ -53,8 +50,7 @@ You can install To run this project, follow these steps:
    ```bash
     echo "" > input.txt
     ```
-
-For more help see [sample-input.txt](https://github.com/MohammedOH/GenomeIndexing/sample-input.txt) file
+   For more help see [sample-input.txt](sample-input.txt) file
 
 3. Compile the Project:
 
@@ -62,21 +58,19 @@ For more help see [sample-input.txt](https://github.com/MohammedOH/GenomeIndexin
     javac -source 18 -target 18 -d out src/*.java
     ```
 
-3. Run the Project:
+4. Run the Project:
 
     ```bash
     java -cp out Main
     ```
 
-4. Open the output file `output.txt`.
-
+5. Open the output file `output.txt`.
 
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
-
 ## Created By
 
-**Mohammed O. AlHabbash**  
+**Mohammed O. AlHabbash**,  
 [mohammad.o.a1999@gmail.com](mailto:mohammad.o.a1999@gmail.com)
