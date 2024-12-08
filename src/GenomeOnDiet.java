@@ -1,8 +1,7 @@
 import java.util.*;
 
-public class GenomeOnDiet {
+public class GenomeOnDiet extends SeedAlgorithm {
 
-    private String sequence;
     private Integer k;
     private Integer w;
     private String p;
@@ -10,15 +9,15 @@ public class GenomeOnDiet {
     private String patternedSequence;
     private List<Integer> originalIndices;
     private String[] kMers;
-    private Map<Integer, String> seeds;
-    private Map<String, Set<Integer>> hashTable;
+    private SeedMap seeds;
+    private HashTable hashTable;
 
     public GenomeOnDiet() {
         originalIndices = new ArrayList<>();
     }
 
     public GenomeOnDiet(String sequence, Integer k, Integer w, String p) {
-        this.sequence = sequence;
+        setSequence(sequence);
         this.k = k;
         this.w = w;
         this.p = p;
@@ -27,14 +26,14 @@ public class GenomeOnDiet {
     }
 
     private String buildPatternedSequence() throws Exception {
-        if (sequence == null || k == null || w == null || p == null) {
+        if (getSequence() == null || k == null || w == null || p == null) {
             throw new Exception("Attribute \"sequence\" must be set to generate the new sequence!");
         }
 
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < sequence.length(); i++) {
+        for (int i = 0; i < getSequence().length(); i++) {
             if (p.charAt(i % p.length()) == '1') {
-                builder.append(sequence.charAt(i));
+                builder.append(getSequence().charAt(i));
                 originalIndices.add(i);
             }
         }
@@ -44,7 +43,7 @@ public class GenomeOnDiet {
     }
 
     private String[] extractKMers() throws Exception {
-        if (sequence == null || k == null || w == null || p == null) {
+        if (getSequence() == null || k == null || w == null || p == null) {
             throw new Exception("Attributes: \"sequence\", \"k\", \"w\", and \"p\" must be set to generate Genome-on-Diet Seeds!");
         }
 
@@ -76,8 +75,8 @@ public class GenomeOnDiet {
             }
         });
 
-        seeds = new HashMap<>();
-        hashTable = new HashMap<>();
+        seeds = new SeedMap();
+        hashTable = new HashTable();
 
         for (int i = 0; i < kMers.length; i++) {
             pq.add(new Seed(originalIndices.get(i), kMers[i]));
@@ -98,23 +97,12 @@ public class GenomeOnDiet {
         }
     }
 
-    public void clearKMers() {
+    @Override
+    public void clear() {
+        super.clear();
         this.patternedSequence = null;
         this.originalIndices = new ArrayList<>();
         this.kMers = null;
-        this.seeds = null;
-        this.hashTable = null;
-    }
-
-    public String getSequence() {
-        return sequence;
-    }
-
-    public void setSequence(String sequence) {
-        this.sequence = sequence;
-
-        // Erase current seeds and hash table
-        clearKMers();
     }
 
     public Integer getK() {
@@ -125,7 +113,7 @@ public class GenomeOnDiet {
         this.k = k;
 
         // Erase current seeds and hash table
-        clearKMers();
+        clear();
     }
 
     public Integer getW() {
@@ -136,7 +124,7 @@ public class GenomeOnDiet {
         this.w = w;
 
         // Erase current seeds and hash table
-        clearKMers();
+        clear();
     }
 
     public String getP() {
@@ -147,7 +135,7 @@ public class GenomeOnDiet {
         this.p = p;
 
         // Erase current seeds and hash table
-        clearKMers();
+        clear();
     }
 
     public String getPatternedSequence() throws Exception {
@@ -159,14 +147,14 @@ public class GenomeOnDiet {
     }
 
     public String getPatternedSequenceString() throws Exception {
-        if (sequence == null || k == null || w == null || p == null) {
+        if (getSequence() == null || k == null || w == null || p == null) {
             throw new Exception("Attribute \"sequence\" must be set to generate the new sequence!");
         }
 
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < sequence.length(); i++) {
+        for (int i = 0; i < getSequence().length(); i++) {
             if (p.charAt(i % p.length()) == '1') {
-                builder.append(sequence.charAt(i));
+                builder.append(getSequence().charAt(i));
             } else {
                 builder.append('-');
             }
@@ -196,7 +184,8 @@ public class GenomeOnDiet {
         return builder.toString();
     }
 
-    public Map<Integer, String> getSeeds() throws Exception {
+    @Override
+    public SeedMap getSeeds() throws Exception {
         if (seeds == null) {
             buildSeeds();
         }
@@ -204,63 +193,13 @@ public class GenomeOnDiet {
         return seeds;
     }
 
-    public Map<String, Set<Integer>> getHashTable() throws Exception {
+    @Override
+    public HashTable getHashTable() throws Exception {
         if (hashTable == null) {
             buildSeeds();
         }
 
         return hashTable;
-    }
-
-    public String getSeedsString(String separator) throws Exception {
-        if (seeds == null) {
-            getSeeds();
-        }
-
-        StringBuilder builder = new StringBuilder();
-
-        Integer[] arr = seeds.keySet().toArray(new Integer[0]);
-        Arrays.sort(arr);
-
-        for (Integer i : arr) {
-            builder.append(String.format("%s, %d%s", seeds.get(i), i, separator == null ? "\n" : separator));
-        }
-
-        return builder.toString();
-    }
-
-    public String getSeedsString() throws Exception {
-        return getSeedsString("\n");
-    }
-
-    public String getHashTableString(String separator) throws Exception {
-        if (hashTable == null) {
-            getHashTable();
-        }
-
-        String[] arr = hashTable.keySet().toArray(new String[0]);
-        Arrays.sort(arr, new Comparator<>() {
-            @Override
-            public int compare(String a, String b) {
-                Integer minA = Collections.min(hashTable.get(a));
-                Integer minB = Collections.min(hashTable.get(b));
-
-                return minA.compareTo(minB);
-            }
-        });
-
-        StringBuilder builder = new StringBuilder();
-        for (String seed : arr) {
-            builder.append(
-                    String.format("%s, %s%s", seed, hashTable.get(seed), separator == null ? "\n" : separator)
-            );
-        }
-
-        return builder.toString();
-    }
-
-    public String getHashTableString() throws Exception {
-        return getHashTableString("\n");
     }
 
 }

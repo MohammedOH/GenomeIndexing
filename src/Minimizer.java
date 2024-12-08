@@ -1,33 +1,34 @@
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.PriorityQueue;
 
-public class Minimizer {
+public class Minimizer extends SeedAlgorithm {
 
-    private String sequence;
     private Integer k;
     private Integer w;
 
     private String[] kMers;
-    private Map<Integer, String> seeds;
-    private Map<String, Set<Integer>> hashTable;
+    private SeedMap seeds;
+    private HashTable hashTable;
 
     public Minimizer() {
     }
 
     public Minimizer(String sequence, Integer k, Integer w) {
-        this.sequence = sequence;
+        setSequence(sequence);
         this.k = k;
         this.w = w;
     }
 
     private String[] extractKMers() throws Exception {
-        if (sequence == null || k == null || w == null) {
+        if (getSequence() == null || k == null || w == null) {
             throw new Exception("Attributes: \"sequence\", \"k\", and \"w\" must be set to generate Minimizer Seeds!");
         }
 
-        kMers = new String[sequence.length() - k + 1];
+        kMers = new String[getSequence().length() - k + 1];
 
-        for (int i = 0; i < sequence.length() - k + 1; i++) {
-            kMers[i] = sequence.substring(i, i + k);
+        for (int i = 0; i < getSequence().length() - k + 1; i++) {
+            kMers[i] = getSequence().substring(i, i + k);
         }
 
         return kMers;
@@ -49,8 +50,8 @@ public class Minimizer {
             }
         });
 
-        seeds = new HashMap<>();
-        hashTable = new HashMap<>();
+        seeds = new SeedMap();
+        hashTable = new HashTable();
 
         for (int i = 0; i < kMers.length; i++) {
             pq.add(new Seed(i, kMers[i]));
@@ -71,21 +72,10 @@ public class Minimizer {
         }
     }
 
-    public void clearKMers() {
+    @Override
+    public void clear() {
+        super.clear();
         this.kMers = null;
-        this.seeds = null;
-        this.hashTable = null;
-    }
-
-    public String getSequence() {
-        return sequence;
-    }
-
-    public void setSequence(String sequence) {
-        this.sequence = sequence;
-
-        // Erase current seeds and hash table
-        clearKMers();
     }
 
     public Integer getK() {
@@ -96,7 +86,7 @@ public class Minimizer {
         this.k = k;
 
         // Erase current seeds and hash table
-        clearKMers();
+        clear();
     }
 
     public Integer getW() {
@@ -107,7 +97,7 @@ public class Minimizer {
         this.w = w;
 
         // Erase current seeds and hash table
-        clearKMers();
+        clear();
     }
 
     public String[] getKMers() throws Exception {
@@ -131,8 +121,8 @@ public class Minimizer {
         return builder.toString();
     }
 
-
-    public Map<Integer, String> getSeeds() throws Exception {
+    @Override
+    public SeedMap getSeeds() throws Exception {
         if (seeds == null) {
             buildMinimizerSeeds();
         }
@@ -140,63 +130,13 @@ public class Minimizer {
         return seeds;
     }
 
-    public Map<String, Set<Integer>> getHashTable() throws Exception {
+    @Override
+    public HashTable getHashTable() throws Exception {
         if (hashTable == null) {
             buildMinimizerSeeds();
         }
 
         return hashTable;
-    }
-
-    public String getSeedsString(String separator) throws Exception {
-        if (seeds == null) {
-            getSeeds();
-        }
-
-        StringBuilder builder = new StringBuilder();
-
-        Integer[] arr = seeds.keySet().toArray(new Integer[0]);
-        Arrays.sort(arr);
-
-        for (Integer i : arr) {
-            builder.append(String.format("%s, %d%s", seeds.get(i), i, separator == null ? "\n" : separator));
-        }
-
-        return builder.toString();
-    }
-
-    public String getSeedsString() throws Exception {
-        return getSeedsString("\n");
-    }
-
-    public String getHashTableString(String separator) throws Exception {
-        if (hashTable == null) {
-            getHashTable();
-        }
-
-        String[] arr = hashTable.keySet().toArray(new String[0]);
-        Arrays.sort(arr, new Comparator<>() {
-            @Override
-            public int compare(String a, String b) {
-                Integer minA = Collections.min(hashTable.get(a));
-                Integer minB = Collections.min(hashTable.get(b));
-
-                return minA.compareTo(minB);
-            }
-        });
-
-        StringBuilder builder = new StringBuilder();
-        for (String seed : arr) {
-            builder.append(
-                    String.format("%s, %s%s", seed, hashTable.get(seed), separator == null ? "\n" : separator)
-            );
-        }
-
-        return builder.toString();
-    }
-
-    public String getHashTableString() throws Exception {
-        return getHashTableString("\n");
     }
 
 }
